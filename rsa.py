@@ -40,8 +40,27 @@ def cypher(plaintext, e, n):
         plist.append((m**e)%n)
     return(plist)
 
+def decipher(cyphertxt, e, Euler, n):
+    d = pow(e, -1, Euler)
+    elist=[]
+    for C in cyphertxt:
+        D = pow(C, d, n)
+        elist.append(chr(D))
+    D = ""
+    for i in elist:
+        D += i
+    return D
 
 p = prime_generator()
 q = prime_generator()
-print(cypher("Hola", find_e(Euler_function(p, q)), n(p,q)))
+Euler = Euler_function(p, q)
+e = find_e(Euler)
+n = n(p,q)
+
+
+tcypher=cypher("Hello World!",e, n)
+print(tcypher)
+
+tdecipher = decipher(tcypher, e, Euler, n)
+print(tdecipher)
 
