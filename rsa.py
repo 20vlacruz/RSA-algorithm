@@ -35,7 +35,6 @@ def n(p, q):
 
 def cypher(plaintext, e, n):
     plist = []
-    cypher = ""
     for m in plaintext:
         m = ord(m)
         plist.append((m**e)%n)
