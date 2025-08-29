@@ -5,7 +5,7 @@ import webbrowser
 
 def prime_generator():
     while True:
-        number = random.randint(100, 900)
+        number = random.randint(100, 999)
         prime = True
 
         for i in range(2, number):
@@ -70,15 +70,18 @@ d = pow(e, -1, Euler)
 
 # Configuració principal
 window = tkinter.Tk()
-window.geometry("800x500")
+window.geometry("800x600")
 window.resizable(False, False)
-window.title("Títul TR - Víctor Lacruz")
+window.title("RSA - Víctor Lacruz")
 window.config(bg="#1f2327")
 icon = tkinter.PhotoImage(file="icon.png")
 window.iconphoto(True, icon)
 
 
 # Entrada principal
+title = tkinter.Label(text="Encriptador RSA",font=("Arial", 20),width=40,bg="#1f2327",fg="#b6b6b7",relief="flat")
+title.grid(row=0, column=0, padx=10, pady=15, columnspan=3, sticky="nsew")
+
 entrada = tkinter.Entry(
     window, 
     font=("Arial", 20),
@@ -89,21 +92,8 @@ entrada = tkinter.Entry(
     insertbackground="white"
 )
 entrada.insert(0, "Introdueix el text a xifrar")
-title = tkinter.Label(
-    text="Encriptador RSA",
-    font=("Arial", 20),
-    width=40,
-    bg="#1f2327",
-    fg="#b6b6b7",
-    relief="flat"
-)
-title.grid(row=0, column=0, padx=10, pady=15, columnspan=3, sticky="nsew")
-
 entrada.grid(row=1, column=0, padx=10, pady=15, columnspan=2, sticky="nsew")
 
-def delete():
-    entrada.delete(0, "end")
-    entrada.insert(0, "Introdueix el text a xifrar")
 
 btn_delete = tkinter.Button(
     window,
@@ -116,7 +106,7 @@ btn_delete = tkinter.Button(
     activeforeground="white",
     width=15,
     height=2,
-    command=delete
+    command=lambda:delete()
 )
 btn_delete.grid(row=1, column=2, padx=10, pady=15, sticky="nsew")
 
@@ -149,30 +139,34 @@ lbl2 = tkinter.Label(text="Recursos", font=("Arial", 15, "bold"), bg="#1f2327", 
 lbl2.grid(row=2, column=2, padx=20, pady=10)
 
 # Estil dels botons
-btn_style = {"bg": "#24282c", "fg": "#e0e0e0", "activebackground": "#3a3f44", "activeforeground": "white",
-             "relief": "flat", "font": ("Arial", 11), "width": 22, "height": 2}
+btn_style = {"bg": "#24282c", "fg": "#e0e0e0", "activebackground": "#3a3f44", "activeforeground": "white","relief": "flat", 
+             "font": ("Arial", 11), "width": 22, "height": 2}
 
 # Columna 0 - Xifrar
-b0_3 = tkinter.Button(window, text="Guardar text", **btn_style, command= lambda: savetxt())
-b0_3.grid(row=3, column=0, pady=5, padx=15)
-b0_0 = tkinter.Button(window, text="Generar p i q", **btn_style, command=lambda:showprimes(p, q))
-b0_0.grid(row=4, column=0, pady=5, padx=15)
-b0_1 = tkinter.Button(window, text="Generar nombre n", **btn_style, command=lambda:shown(n))
-b0_1.grid(row=5, column=0, pady=5, padx=15)
-b0_2 = tkinter.Button(window, text="Generar nombre funció Phi", **btn_style, command=lambda:showphi(Euler))
-b0_2.grid(row=6, column=0, pady=5, padx=15)
+b0_0 = tkinter.Button(window, text="Guardar text", **btn_style, command= lambda: savetxt())
+b0_0.grid(row=3, column=0, pady=5, padx=15)
+b0_1 = tkinter.Button(window, text="Mostrar p i q", **btn_style, command=lambda:showprimes(p, q))
+b0_1.grid(row=4, column=0, pady=5, padx=15)
+b0_2 = tkinter.Button(window, text="Mostrar n", **btn_style, command=lambda:shown(n))
+b0_2.grid(row=5, column=0, pady=5, padx=15)
+b0_3 = tkinter.Button(window, text="Mostrar φ", **btn_style, command=lambda:showphi(Euler))
+b0_3.grid(row=6, column=0, pady=5, padx=15)
 b0_4 = tkinter.Button(window, text="Xifrar", **btn_style, command=lambda: savecypher(text, e, n))
 b0_4.grid(row=7, column=0, pady=5, padx=15)
+b0_5 = tkinter.Button(window, text="Mostrar Clau Pública", **btn_style, command=lambda:showpublic())
+b0_5.grid(row=8, column=0, pady=5, padx=15)
 
 # Columna 1 - Desxifrar
-b1_3 = tkinter.Button(window, text="Mostrar text xifrat", **btn_style, command=lambda: showcypher(C))
-b1_3.grid(row=3, column=1, pady=5, padx=15)
-b1_0 = tkinter.Button(window, text="Trobar d", **btn_style, command= lambda: showd())
-b1_0.grid(row=4, column=1, pady=5, padx=15)
-b1_1 = tkinter.Button(window, text="Desxifrar", **btn_style, command= lambda: savedecipher())
-b1_1.grid(row=5, column=1, pady=5, padx=15)
-b1_2 = tkinter.Button(window, text="Mostrar text desxifrat", **btn_style, command=lambda: showdecipher(deciphertxt))
-b1_2.grid(row=6, column=1, pady=5, padx=15)
+b1_0 = tkinter.Button(window, text="Mostrar text xifrat", **btn_style, command=lambda: showcypher(C))
+b1_0.grid(row=3, column=1, pady=5, padx=15)
+b1_1 = tkinter.Button(window, text="Mostrar d", **btn_style, command= lambda: showd())
+b1_1.grid(row=4, column=1, pady=5, padx=15)
+b1_2 = tkinter.Button(window, text="Desxifrar", **btn_style, command= lambda: savedecipher())
+b1_2.grid(row=5, column=1, pady=5, padx=15)
+b1_3 = tkinter.Button(window, text="Mostrar text desxifrat", **btn_style, command=lambda: showdecipher(deciphertxt))
+b1_3.grid(row=6, column=1, pady=5, padx=15)
+b1_3 = tkinter.Button(window, text="Mostrar clau privada", **btn_style, command=lambda:showprivate())
+b1_3.grid(row=7, column=1, pady=5, padx=15)
 
 # Columna 2 - Recursos
 b2_0 = tkinter.Button(window, text="Instruccions Aplicació", **btn_style, command=opManual)
@@ -188,6 +182,10 @@ window.grid_columnconfigure(1, weight=1)
 window.grid_columnconfigure(2, weight=1)
 
 #Funcions UI
+def delete():
+    entrada.delete(0, "end")
+    entrada.insert(0, "Introdueix el text a xifrar")
+    
 def showprimes(p, q):
     entrada.delete(0, "end")
     entrada.insert(0, f"p = {p} i q = {q}")
@@ -236,4 +234,11 @@ def showdecipher(D):
     entrada.delete(0, "end")
     entrada.insert(0, D)
 
+def showpublic():
+    entrada.delete(0, "end")
+    entrada.insert(0, f"({e}, {n})")
+
+def showprivate():
+    entrada.delete(0, "end")
+    entrada.insert(0, f"({d}, {n})")
 window.mainloop()
