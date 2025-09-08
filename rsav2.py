@@ -2,6 +2,7 @@ import random
 import math
 import tkinter
 import webbrowser
+import pyperclip
 
 #Funcions "internes"
 def prime_generator():
@@ -44,6 +45,9 @@ def opManual():
 def opASCII():
     webbrowser.open("https://elcodigoascii.com.ar/")
 
+def opTeoria():
+    webbrowser.open("https://docs.google.com/document/d/1jfODmPfew1bb6YUtB_-nZCqmj27m_gtPon8m0G22sNg/edit?pli=1&tab=t.0#heading=h.dhw8vuos626h")
+
 #Variables globals
 p = q = n = e = d = Euler = None
 text = ""
@@ -60,15 +64,15 @@ icon = tkinter.PhotoImage(file="icon.png")
 window.iconphoto(True, icon)
 
 label_style = {"bg": "#1f2327", "fg": "#b6b6b7", "font": ("Arial", 12)}
-entry_style = {"bg": "#181c20", "fg": "#b6b6b7", "relief": "flat",
-               "insertbackground": "white", "font": ("Arial", 13), "justify": "center"}
+
+entry_style = {"bg": "#181c20", "fg": "#b6b6b7", "relief": "flat", "insertbackground": "white", "font": ("Arial", 13), "justify": "center"}
+
 btn_style = {"bg": "#24282c", "fg": "#e0e0e0", "activebackground": "#3a3f44",
              "activeforeground": "white", "relief": "flat",
              "font": ("Arial", 11, "bold"), "width": 18, "height": 2}
 
 
-titulo = tkinter.Label(window, text="Circuit complet de l'algorisme RSA",
-                       font=("Arial", 22, "bold"), bg="#1f2327", fg="#e0e0e0")
+titulo = tkinter.Label(window, text="Xifrar amb RSA", font=("Arial", 22, "bold"), bg="#1f2327", fg="#e0e0e0")
 titulo.pack(pady=20)
 
 
@@ -99,13 +103,11 @@ def make_scroll_entry(parent, width=30):
     entry = tkinter.Entry(frame, width=width, **entry_style)
     entry.pack(side="top", fill="x", padx=2)
 
-    scrollbar = tkinter.Scrollbar(frame, orient="horizontal", command=entry.xview,
-                                  bg="#24282c", troughcolor="#181c20")
+    scrollbar = tkinter.Scrollbar(frame, orient="horizontal", command=entry.xview, bg="#24282c", troughcolor="#181c20")
     scrollbar.pack(side="bottom", fill="x")
 
     entry.config(xscrollcommand=scrollbar.set)
     return entry, frame
-
 
 frame_msgs = tkinter.Frame(window, bg="#1f2327")
 frame_msgs.pack(pady=20)
@@ -137,7 +139,7 @@ def generar():
     e = find_e(Euler)
     n = p * q
     d = pow(e, -1, Euler)
-
+    
     ent_p.delete(0, "end"); ent_p.insert(0, str(p))
     ent_q.delete(0, "end"); ent_q.insert(0, str(q))
     ent_n.delete(0, "end"); ent_n.insert(0, str(n))
@@ -158,6 +160,10 @@ def desxifrar():
     ent_dec.delete(0, "end")
     ent_dec.insert(0, deciphertxt)
 
+def copy():
+    text = ent_cyph.get()
+    pyperclip.copy(text)
+
 # Botons
 frame_btns = tkinter.Frame(window, bg="#1f2327")
 frame_btns.pack(pady=30)
@@ -171,10 +177,16 @@ btn_xif.grid(row=0, column=1, padx=20, pady=10, ipadx=5, ipady=5)
 btn_desxif = tkinter.Button(frame_btns, text="Desxifrar missatge", **btn_style, command=desxifrar)
 btn_desxif.grid(row=0, column=2, padx=20, pady=10, ipadx=5, ipady=5)
 
-btn_manual = tkinter.Button(frame_btns, text="Manual RSA", **btn_style, command=opManual)
+btn_manual = tkinter.Button(frame_btns, text="Manual", **btn_style, command=opManual)
 btn_manual.grid(row=1, column=0, padx=20, pady=10, ipadx=5, ipady=5)
 
+btn_teoria = tkinter.Button(frame_btns, text="Teoria RSA", **btn_style, command=opTeoria)
+btn_teoria.grid(row=1, column=1, padx=20, pady=10, ipadx=5, ipady=5)
+
 btn_ascii = tkinter.Button(frame_btns, text="Taula ASCII", **btn_style, command=opASCII)
-btn_ascii.grid(row=1, column=1, padx=20, pady=10, ipadx=5, ipady=5)
+btn_ascii.grid(row=1, column=2, padx=20, pady=10, ipadx=5, ipady=5)
+
+btn_copy = tkinter.Button(frame_btns, text="Copiar Xifrat", **btn_style, command=copy)
+btn_copy.grid(row=2, column=1, padx=20, pady=10, ipadx=5, ipady=5)
 
 window.mainloop()
