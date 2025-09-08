@@ -91,10 +91,10 @@ ent_n = tkinter.Entry(frame_keys, width=15, **entry_style); ent_n.grid(row=1, co
 lbl_phi = tkinter.Label(frame_keys, text="φ(n)", **label_style); lbl_phi.grid(row=2, column=0, padx=10, pady=5)
 ent_phi = tkinter.Entry(frame_keys, width=15, **entry_style); ent_phi.grid(row=3, column=0, padx=10, pady=5)
 
-lbl_e = tkinter.Label(frame_keys, text="e (clau pública)", **label_style); lbl_e.grid(row=2, column=1, padx=10, pady=5)
+lbl_e = tkinter.Label(frame_keys, text="e", **label_style); lbl_e.grid(row=2, column=1, padx=10, pady=5)
 ent_e = tkinter.Entry(frame_keys, width=15, **entry_style); ent_e.grid(row=3, column=1, padx=10, pady=5)
 
-lbl_d = tkinter.Label(frame_keys, text="d (clau privada)", **label_style); lbl_d.grid(row=2, column=2, padx=10, pady=5)
+lbl_d = tkinter.Label(frame_keys, text="d", **label_style); lbl_d.grid(row=2, column=2, padx=10, pady=5)
 ent_d = tkinter.Entry(frame_keys, width=15, **entry_style); ent_d.grid(row=3, column=2, padx=10, pady=5)
 
 #Scroll
