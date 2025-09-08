@@ -49,7 +49,7 @@ def decipher(cyphertxt, n):
     return result
 
 def opManual():
-    url = "https://docs.google.com/document/d/1jfODmPfew1bb6YUtB_-nZCqmj27m_gtPon8m0G22sNg/edit?pli=1&tab=t.0#heading=h.3mnsjxsuq5xf"
+    url = "https://docs.google.com/document/d/1jfODmPfew1bb6YUtB_-nZCqmj27m_gtPon8m0G22sNg/edit?pli=1&tab=t.0#heading=h.io896uf4pm76"
     webbrowser.open(url)
 
 def opRSA():
