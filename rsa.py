@@ -17,7 +17,8 @@ def prime_generator():
             return number
 
 def Euler_function(p, q):
-    return (p - 1) * (q - 1)
+    result = (p-1) * (q - 1)
+    return result
 
 def find_e(Euler):
     while True:
@@ -38,6 +39,7 @@ def decipher(cyphertxt, n, d):
         M = pow(C, d, n)
         elist.append(chr(M))
     return "".join(elist)
+
 
 def opManual():
     webbrowser.open("https://docs.google.com/document/d/1jfODmPfew1bb6YUtB_-nZCqmj27m_gtPon8m0G22sNg/edit?pli=1&tab=t.0#heading=h.io896uf4pm76")
@@ -72,8 +74,8 @@ btn_style = {"bg": "#24282c", "fg": "#e0e0e0", "activebackground": "#3a3f44",
              "font": ("Arial", 11, "bold"), "width": 18, "height": 2}
 
 
-titulo = tkinter.Label(window, text="Xifrar amb RSA", font=("Arial", 22, "bold"), bg="#1f2327", fg="#e0e0e0")
-titulo.pack(pady=20)
+title = tkinter.Label(window, text="Xifrar amb RSA", font=("Arial", 22, "bold"), bg="#1f2327", fg="#e0e0e0")
+title.pack(pady=20)
 
 
 frame_keys = tkinter.Frame(window, bg="#1f2327")
@@ -137,7 +139,7 @@ def generar():
     q = prime_generator()
     Euler = Euler_function(p, q)
     e = find_e(Euler)
-    n = p * q
+    n = p*q
     d = pow(e, -1, Euler)
     
     ent_p.delete(0, "end"); ent_p.insert(0, str(p))
