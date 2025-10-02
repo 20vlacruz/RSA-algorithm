@@ -3,6 +3,17 @@ import math
 import tkinter
 import webbrowser
 import pyperclip
+import sys
+import os
+
+
+def resource_path(relative_path):
+    """Devuelve la ruta absoluta del archivo para PyInstaller"""
+    try:
+        base_path = sys._MEIPASS
+    except AttributeError:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 
 #Funcions "internes"
 def prime_generator():
@@ -62,7 +73,8 @@ window.geometry("950x650")
 window.resizable(False, False)
 window.title("RSA - Víctor Lacruz")
 window.config(bg="#1f2327")
-icon = tkinter.PhotoImage(file="icon.png")
+icon_path = resource_path("icon.png")
+icon = tkinter.PhotoImage(file=icon_path)
 window.iconphoto(True, icon)
 
 label_style = {"bg": "#1f2327", "fg": "#b6b6b7", "font": ("Arial", 12)}
