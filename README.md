@@ -1,6 +1,6 @@
 # 🔐 RSA Algorithm
 
-## 🇨🇦 Català
+## 🏴󠁥󠁳󠁣󠁴󠁿 Català
 
 ### 📌 Descripció  
 Aquest projecte implementa l’algorisme **RSA** per a xifrar i desxifrar dades.  
