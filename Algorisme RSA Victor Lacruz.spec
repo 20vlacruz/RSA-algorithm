@@ -5,7 +5,7 @@ a = Analysis(
     ['rsa.py'],
     pathex=[],
     binaries=[],
-    datas=[],
+    datas=[('icon.png', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
